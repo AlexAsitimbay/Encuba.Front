@@ -12,10 +12,35 @@
           <p class="card-text">{{ product.description }}</p>
           <p class="card-text">Precio: {{ product.price | currency:'USD':'symbol':'1.2-2' }}</p>
           <div class="d-flex justify-content-between">
-            <button class="btn btn-primary" (click)="addToCart(product)">Agregar al Carrito</button>
-            <button class="btn btn-danger" (click)="deleteProduct(product.id)">Eliminar</button>
-            <button class="btn btn-warning" (click)="updateProduct(product)">Actualizar</button>
+            <!-- Botón para Agregar al Carrito con Popover -->
+            <button class="btn btn-primary btn-sm"
+                    (click)="addToCart(product)"
+                    data-bs-toggle="popover"
+                    title="Agregar al Carrito"
+                    data-bs-content="Añade este producto al carrito de compras"
+                    placement="top"><i class="fas fa-shopping-cart"></i>
+            </button>
+
+            <!-- Botón para Eliminar con Popover -->
+            <button class="btn btn-danger btn-sm"
+                    (click)="deleteProduct(product.id)"
+                    data-bs-toggle="popover"
+                    title="Eliminar"
+                    data-bs-content="Eliminar este producto"
+                    placement="top"><i class="fas fa-trash-alt"></i>
+            </button>
+
+            <!-- Botón para Actualizar con Popover -->
+            <button class="btn btn-warning btn-sm"
+                    (click)="updateProduct(product.id)"
+                    data-bs-toggle="popover"
+                    title="Actualizar"
+                    data-bs-content="Actualizar la información del producto"
+                    placement="top"> <i class="fas fa-edit"></i>
+            </button>
           </div>
+
+
         </div>
       </div>
     </div>

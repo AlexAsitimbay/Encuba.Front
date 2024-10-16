@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Actualizar Producto</h2>
+<div mat-dialog-content>
+  <form [formGroup]="updateProductForm">
+    <div class="form-group">
+      <label for="name">Nombre del Producto</label>
+      <input type="text" id="name" class="form-control" formControlName="name" placeholder="Nombre del producto">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="description">Descripción</label>
+      <textarea id="description" class="form-control" formControlName="description" placeholder="Descripción del producto"></textarea>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="price">Precio</label>
+      <input type="number" id="price" class="form-control" formControlName="price" placeholder="Precio del producto">
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onUpdate()">Actualizar</button>
+</div>

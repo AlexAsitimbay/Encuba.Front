@@ -10,7 +10,7 @@ export class EntityService<T> {
 
   constructor(private http: HttpClient) {}
 
-  getById(url: string, id: number): Observable<EntityResponse<T>> {
+  getById(url: string, id: string): Observable<EntityResponse<T>> {
     return this.http.get<EntityResponse<T>>(`${url}/${id}`);
   }
 
@@ -22,7 +22,7 @@ export class EntityService<T> {
     return this.http.post<EntityResponse<T>>(url, entity);
   }
 
-  update(url: string, id: number, entity: T): Observable<EntityResponse<T>> {
+  update(url: string, id: string, entity: T): Observable<EntityResponse<T>> {
     return this.http.put<EntityResponse<T>>(`${url}/${id}`, entity);
   }
 

@@ -17,6 +17,7 @@ import { AddProductDialogComponent } from './product/add-product-dialog/add-prod
 import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
+import { UpdateProductDialogComponent } from './product/update-product-dialog/update-product-dialog.component';
 export function tokenGetter() {
   return localStorage.getItem('accessToken'); // Asegúrate de que esto sea correcto
 }
@@ -26,7 +27,8 @@ export function tokenGetter() {
     LoginComponent,
     ProductComponent,
     BlogComponent,
-    AddProductDialogComponent
+    AddProductDialogComponent,
+    UpdateProductDialogComponent
   ],
   imports: [
     BrowserModule,

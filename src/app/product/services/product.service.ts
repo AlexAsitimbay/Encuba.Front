@@ -28,5 +28,12 @@ export class ProductService {
     return this.entityService.create(this.productUrl, product);
   }
 
+  getById(productId: string): Observable<EntityResponse<ProductResponse>> {
+    return this.entityService.getById(this.productUrl, productId);
+  }
+
+  update(productId: string, productRequest: ProductRequest): Observable<EntityResponse<ProductResponse>> {
+    return this.entityService.update(this.productUrl, productId, productRequest);
+  }
 
 }

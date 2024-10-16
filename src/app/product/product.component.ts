@@ -6,26 +6,29 @@ import {ProductService} from './services/product.service';
 import {NotificationService} from '../shared/services/notification.service';
 import {AddProductDialogComponent} from './add-product-dialog/add-product-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-
+import {UpdateProductDialogComponent} from './update-product-dialog/update-product-dialog.component';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent implements OnInit{
+
+export class ProductComponent implements OnInit {
   products$: Observable<EntityResponse<ProductResponse[]>> | null = null;
   private unsubscribe$ = new Subject<void>();
 
   constructor(private productService: ProductService,
               private notificationService: NotificationService,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.getProducts();
+
   }
 
   getProducts(): void {
-    this.products$ = this.productService.getAll(); // Cambia a la URL correcta
+    this.products$ = this.productService.getAll();
   }
 
   addToCart(product: ProductResponse): void {
@@ -35,7 +38,7 @@ export class ProductComponent implements OnInit{
     this.productService.deleteProduct(productId).pipe(takeUntil(this.unsubscribe$)).subscribe(response => {
       if (response.isSuccess) {
         this.notificationService.showSuccess('Producto eliminado exitosamente.');
-        this.getProducts(); // Actualiza la lista después de eliminar
+        this.getProducts();
       } else {
         this.notificationService.showError('Error al eliminar el producto: ' + response.entityErrorResponse.message);
       }
@@ -44,15 +47,30 @@ export class ProductComponent implements OnInit{
     });
   }
 
-  updateProduct(product: ProductResponse): void {
-  }
-
-  addNewProduct(): void {
-    const dialogRef = this.dialog.open(AddProductDialogComponent);
+  updateProduct(productId: string): void {
+    const dialogRef = this.dialog.open(UpdateProductDialogComponent, {
+      width: '600px',
+      maxHeight: '80vh',
+      data: {productId: productId}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getProducts(); // Actualizar la lista de productos si se agregó uno nuevo
+        this.getProducts();
+      }
+    });
+  }
+
+  addNewProduct(): void {
+    const dialogRef = this.dialog.open(AddProductDialogComponent,
+      {
+        width: '600px',
+        maxHeight: '80vh'
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getProducts();
       }
     });
   }
