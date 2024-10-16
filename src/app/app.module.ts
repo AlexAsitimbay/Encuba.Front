@@ -19,6 +19,7 @@ import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import { UpdateProductDialogComponent } from './product/update-product-dialog/update-product-dialog.component';
 import { CartProductComponent } from './product/cart-product/cart-product.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
 }
@@ -30,7 +31,8 @@ export function tokenGetter() {
     BlogComponent,
     AddProductDialogComponent,
     UpdateProductDialogComponent,
-    CartProductComponent
+    CartProductComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import {UpdateProductDialogComponent} from './update-product-dialog/update-produ
 import {CartShoppingService} from './services/cart.shopping.service';
 import {ProductCacheResponse} from './cart-product/models/product.cache.response';
 import {CartProductComponent} from './cart-product/cart-product.component';
+import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -59,15 +60,24 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(productId: string): void {
-    this.productService.deleteProduct(productId).pipe(takeUntil(this.unsubscribe$)).subscribe(response => {
-      if (response.isSuccess) {
-        this.notificationService.showSuccess('Producto eliminado exitosamente.');
-        this.getProducts();
-      } else {
-        this.notificationService.showError('Error al eliminar el producto: ' + response.entityErrorResponse.message);
+    // Abre el diálogo de confirmación
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+    // Cuando el diálogo se cierra, verifica el resultado
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Si el usuario confirmó, procede a eliminar el producto
+        this.productService.deleteProduct(productId).pipe(takeUntil(this.unsubscribe$)).subscribe(response => {
+          if (response.isSuccess) {
+            this.notificationService.showSuccess('Producto eliminado exitosamente.');
+            this.getProducts(); // Refresca la lista de productos
+          } else {
+            this.notificationService.showError('Error al eliminar el producto: ' + response.entityErrorResponse.message);
+          }
+        }, error => {
+          this.notificationService.showError('Error en la solicitud: ' + error.message);
+        });
       }
-    }, error => {
-      this.notificationService.showError('Error en la solicitud: ' + error.message);
     });
   }
 
