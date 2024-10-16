@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <button class="btn btn-lila" (click)="navigateToHome()" style="position: absolute; top: 10px; left: 10px;">
+    ← Volver
+  </button>
+  <div class="card p-4" style="max-width: 400px; width: 100%;">
+    <h4 class="text-center mb-4">Iniciar Sesión</h4>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="username">Correo Electrónico</label>
+        <input type="text" class="form-control" id="username" formControlName="username" placeholder="Ingresa tu correo">
+      </div>
+      <div class="form-group mt-3">
+        <label for="password">Contraseña</label>
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Ingresa tu contraseña">
+      </div>
+      <button type="submit" class="btn btn-lila btn-block mt-4">Iniciar Sesión</button>
+    </form>
+  </div>
+</div>

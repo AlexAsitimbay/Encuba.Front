@@ -1,0 +1,43 @@
+/* Ajustar el tamaño de las imágenes */
+.card-img-top {
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Hacer la ventana de chat pegajosa */
+.chat-box {
+  position: sticky;
+  top: 20px;
+  height: 400px;
+  overflow-y: auto;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .chat-box {
+    margin-top: 20px;
+  }
+}
+
+.card-header {
+  background-color: #800080;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btn-purple {
+  background-color: #800080;
+  color: white;
+  border: none;
+}
+
+.btn-purple:hover {
+  background-color: #5a005a;
+  color: white;
+}
+

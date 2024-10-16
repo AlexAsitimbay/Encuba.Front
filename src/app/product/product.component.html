@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Listado de Productos</h2>
+  <div class="text-right mt-4">
+    <button class="btn btn-success" (click)="addNewProduct()">Agregar Nuevo Producto</button>
+  </div>
+
+  <div *ngIf="products$ | async as response; else loading" class="row mt-4">
+    <div class="col-md-4 mb-4" *ngFor="let product of response.value">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">Precio: {{ product.price | currency:'USD':'symbol':'1.2-2' }}</p>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary" (click)="addToCart(product)">Agregar al Carrito</button>
+            <button class="btn btn-danger" (click)="deleteProduct(product.id)">Eliminar</button>
+            <button class="btn btn-warning" (click)="updateProduct(product)">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Cargando...</span>
+      </div>
+      <p>Cargando productos...</p>
+    </div>
+  </ng-template>
+
+
+</div>

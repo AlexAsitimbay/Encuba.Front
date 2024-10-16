@@ -1,0 +1,45 @@
+
+<div class="container-fluid">
+
+  <div class="row">
+    <h1>Blog with categories</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-md-3 d-none d-md-block">
+      <h4>Categories</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let category of categories">{{ category }}</li>
+      </ul>
+      <button class="btn btn-primary mt-3" (click)="navigateToLogin()">Iniciar Sesión</button>
+
+    </div>
+
+    <div class="col-lg-7 col-md-6 col-sm-12">
+      <div class="card mb-4" *ngFor="let post of posts">
+        <img src="https://via.placeholder.com/1500x300" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.description }}</p>
+          <a href="#" class="btn btn-purple">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-12">
+      <div class="chat-box card">
+        <div class="card-header">
+          Chat with Other Users
+        </div>
+        <div class="card-body">
+          <div *ngFor="let message of chatMessages">
+            <strong>{{ message.user }}:</strong> {{ message.text }}
+          </div>
+        </div>
+        <div class="card-footer">
+          <input type="text" class="form-control" placeholder="Type a message" [(ngModel)]="newMessage">
+          <button class="btn btn-purple mt-2" (click)="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

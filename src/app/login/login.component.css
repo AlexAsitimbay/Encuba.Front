@@ -1,0 +1,22 @@
+/* Centrar el formulario de login */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón lila */
+.btn-lila {
+  background-color: #800080;
+  color: white;
+  border: none;
+}
+
+.btn-lila:hover {
+  background-color: #5a005a;
+}
