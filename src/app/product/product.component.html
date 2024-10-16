@@ -1,5 +1,16 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Listado de Productos</h2>
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 class="text-center mb-4">Listado de Productos</h2>
+    <!-- Icono del carrito con número de productos -->
+    <button class="btn btn-outline-primary position-relative" (click)="openCartModal()">
+      <i class="fas fa-shopping-cart"></i> Carrito
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ cartItems.length }}
+      </span>
+    </button>
+  </div>
+
+  <!-- Botón para agregar nuevo producto -->
   <div class="text-right mt-4">
     <button class="btn btn-success" (click)="addNewProduct()">Agregar Nuevo Producto</button>
   </div>
@@ -12,7 +23,6 @@
           <p class="card-text">{{ product.description }}</p>
           <p class="card-text">Precio: {{ product.price | currency:'USD':'symbol':'1.2-2' }}</p>
           <div class="d-flex justify-content-between">
-            <!-- Botón para Agregar al Carrito con Popover -->
             <button class="btn btn-primary btn-sm"
                     (click)="addToCart(product)"
                     data-bs-toggle="popover"
@@ -21,7 +31,6 @@
                     placement="top"><i class="fas fa-shopping-cart"></i>
             </button>
 
-            <!-- Botón para Eliminar con Popover -->
             <button class="btn btn-danger btn-sm"
                     (click)="deleteProduct(product.id)"
                     data-bs-toggle="popover"
@@ -30,7 +39,6 @@
                     placement="top"><i class="fas fa-trash-alt"></i>
             </button>
 
-            <!-- Botón para Actualizar con Popover -->
             <button class="btn btn-warning btn-sm"
                     (click)="updateProduct(product.id)"
                     data-bs-toggle="popover"

@@ -10,47 +10,46 @@ import { NotificationService } from '../shared/services/notification.service'; /
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup; // Usar Reactive Forms para manejar el formulario
+  loginForm: FormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private fb: FormBuilder,
-    private notificationService: NotificationService // Opcional
+    private notificationService: NotificationService
   ) {
-    // Inicializa el formulario con validaciones
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]], // Validaciones para el email
-      password: ['', [Validators.required]] // Validaciones para la contraseña
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
-  // Método para navegar a la página principal
   navigateToHome() {
-    this.router.navigate(['/']); // Redirige a la página principal
+    this.router.navigate(['/']);
   }
 
-  // Método para iniciar sesión
   login() {
     if (this.loginForm.invalid) {
-      this.notificationService.showError('Por favor, completa el formulario correctamente.'); // Mensaje de error
-      return; // Si el formulario es inválido, no continuar
+      this.notificationService.showError('Por favor, completa el formulario correctamente.');
+      return;
     }
 
-    const { username, password } = this.loginForm.value; // Destructuring para obtener valores
+    const { username, password } = this.loginForm.value;
 
     this.authService.login(username, password).subscribe({
       next: (success) => {
         if (success) {
           console.log('Login exitoso');
-          this.router.navigate(['/product']); // Redirige a la página deseada después del login
+          this.authService.getJwt().subscribe(jwt => {
+          });
+          this.router.navigate(['/product']);
         } else {
-          this.notificationService.showError('Error en el login.'); // Mensaje de error
+          this.notificationService.showError('Error en el login.');
         }
       },
       error: (err) => {
         console.error('Error durante el login:', err);
-        this.notificationService.showError('Ocurrió un error durante la autenticación.'); // Mensaje de error detallado
+        this.notificationService.showError('Ocurrió un error durante la autenticación.');
       }
     });
   }

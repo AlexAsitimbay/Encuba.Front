@@ -18,8 +18,9 @@ import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/mater
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
 import { UpdateProductDialogComponent } from './product/update-product-dialog/update-product-dialog.component';
+import { CartProductComponent } from './product/cart-product/cart-product.component';
 export function tokenGetter() {
-  return localStorage.getItem('accessToken'); // Asegúrate de que esto sea correcto
+  return localStorage.getItem('accessToken');
 }
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ export function tokenGetter() {
     ProductComponent,
     BlogComponent,
     AddProductDialogComponent,
-    UpdateProductDialogComponent
+    UpdateProductDialogComponent,
+    CartProductComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +40,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:44332'], // Cambia esto a tu dominio
-        disallowedRoutes: ['https://localhost:44332/user/auth/login'], // Cambia esto si tienes rutas que no necesitan token
+        allowedDomains: ['localhost:44332'],
+        disallowedRoutes: ['https://localhost:44332/user/auth/login'],
       },
     }),
     ReactiveFormsModule,

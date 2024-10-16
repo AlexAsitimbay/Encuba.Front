@@ -10,14 +10,14 @@ export class NotificationService {
   showError(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
-      panelClass: ['snackbar-error'] // Puedes agregar estilos personalizados
+      panelClass: ['snackbar-error']
     });
   }
 
   showSuccess(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
-      panelClass: ['snackbar-success'] // Puedes agregar estilos personalizados
+      panelClass: ['snackbar-success']
     });
   }
 }

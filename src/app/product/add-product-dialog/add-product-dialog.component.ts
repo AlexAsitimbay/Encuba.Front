@@ -31,15 +31,15 @@ export class AddProductDialogComponent {
     if (this.productForm.valid) {
       this.productService.add(this.productForm.value).subscribe(() => {
         this.notificationService.showSuccess('Producto agregado con éxito');
-        this.dialogRef.close(true); // Devuelve true si se guardó correctamente
+        this.dialogRef.close(true);
       }, error => {
-        this.notificationService.showError('Error al agregar el producto'); // Mostrar notificación de error
+        this.notificationService.showError('Error al agregar el producto');
         console.error('Error al agregar el producto:', error);
       });
     }
   }
 
   onCancel(): void {
-    this.dialogRef.close(); // Cierra el diálogo sin guardar
+    this.dialogRef.close();
   }
 }

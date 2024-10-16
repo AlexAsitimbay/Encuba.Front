@@ -29,4 +29,8 @@ export class EntityService<T> {
   delete(url: string, id: string): Observable<EntityResponse<void>> {
     return this.http.delete<EntityResponse<void>>(`${url}/${id}`);
   }
+
+  getByIdUrl(url: string): Observable<EntityResponse<T>> {
+    return this.http.get<EntityResponse<T>>(url);
+  }
 }

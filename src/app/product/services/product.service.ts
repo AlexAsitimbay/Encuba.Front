@@ -15,7 +15,6 @@ export class ProductService {
 
   constructor(private entityService: EntityService<any>) {}
 
-  // Método para eliminar un producto por ID
   deleteProduct(id: string): Observable<EntityResponse<void>> {
     return this.entityService.delete(this.productUrl, id);
   }
